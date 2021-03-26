@@ -43,11 +43,12 @@ class Block {
                                             
             // Recalculate the hash of the Block
             self.hash = null;
-            self.hash = SHA256( JSON.stringify( self )).toString();
+            let newHash = SHA256( JSON.stringify( self )).toString();
+            self.hash = curHash; // reassign original hash to block
 
             // Returning the Block is not valid
             // Returning the Block is valid
-            resolve( curHash == self.hash );
+            resolve( curHash == newHash );
         });
     }
 
